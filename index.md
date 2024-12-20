@@ -33,6 +33,7 @@ feature_row:
     btn_class: "btn--primary"
 ---
 
+
 ## Welcome to My Study Notes
 
 Here you'll find a comprehensive collection of lecture notes and study materials from my Computer Science degree at Bar-Ilan University. All materials are organized by year and semester for easy navigation.
