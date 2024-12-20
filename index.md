@@ -38,7 +38,7 @@ feature_row:
 
 Here you'll find a comprehensive collection of lecture notes and study materials from my Computer Science degree at Bar-Ilan University. All materials are organized by year and semester for easy navigation.
 
-{% include feature_row %}
+//{% include feature_row %}
 
 ## Development Tools & Skills
 - Programming Languages: Python, Java, C++
