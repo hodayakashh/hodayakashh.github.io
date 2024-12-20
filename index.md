@@ -1,46 +1,26 @@
 ---
-layout: splash
-permalink: /
+layout: default
 title: "Computer Science Notes"
-author_profile: true
-header:
-  overlay_color: "#B3C8CF"
-  overlay_filter: "0.3"
-excerpt: "Lecture notes and course materials for Computer Science degree at Bar-Ilan University (2024-2026)"
-feature_row:
-  - title: "First Year"
-    excerpt: "First year core courses"
-    list_group:
-      - "Data Structures"
-      - "Introduction to Computer Science"
-      - "Linear Algebra"
-      - "Calculus"
-      - "Discrete Mathematics"
-    url: "/year1/"
-    btn_label: "View Notes"
-    btn_class: "btn--primary"
-  
-  - title: "Second Year"
-    excerpt: "Second year advanced courses"
-    list_group:
-      - "Algorithms"
-      - "Operating Systems"
-      - "Computer Architecture"
-      - "Probability and Statistics"
-    url: "/year2/"
-    btn_label: "View Notes"
-    btn_class: "btn--primary"
 ---
 
-## Welcome to My Study Notes
+# Computer Science Notes - Bar-Ilan University
 
-Here you'll find a comprehensive collection of lecture notes and study materials from my Computer Science degree at Bar-Ilan University. All materials are organized by year and semester for easy navigation.
+Welcome to my collection of lecture notes and study materials for Computer Science courses at Bar-Ilan University (2024-2026).
 
-## Development Tools & Skills
+## Year 1
+- Data Structures
+- Introduction to Computer Science
+- Linear Algebra
+- Calculus
+- Discrete Mathematics
 
+## Year 2
+- Algorithms
+- Operating Systems
+- Computer Architecture
+- Probability and Statistics
+
+## Skills & Tools
 - Programming Languages: Python, Java, C++
-- Development Environments
+- Development Tools
 - Theoretical Concepts
-- Data Structures & Algorithms
-
-*Last Updated: December 2024*
