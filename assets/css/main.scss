@@ -1,0 +1,68 @@
+---
+---
+
+@charset "utf-8";
+
+/* Colors - הגדרת המשתנים */
+$background-color: #F1F0E8;
+$text-color: #2D2D2D;
+$primary-color: #B3C8CF;
+$secondary-color: #EBE3D5;
+$accent-color: #8CA7B0;
+$border-color: #E0E0E0;
+$light-color: #F8F8F8;
+
+/* Custom styling */
+.page__content {
+  background-color: $background-color;
+  color: $text-color;
+}
+
+.nav__items {
+  background-color: $secondary-color;
+}
+
+.btn--primary {
+  background-color: $accent-color;
+  &:hover {
+    background-color: darken($accent-color, 10%);
+  }
+}
+
+/* Recent Updates section styling */
+.recent-updates {
+  background-color: $light-color;
+  padding: 2em;
+  border-radius: 5px;
+  margin: 2em 0;
+}
+
+.update-item {
+  margin-bottom: 1.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid $border-color;
+  
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.update-date {
+  color: lighten($text-color, 20%);
+  font-size: 0.85em;
+}
+
+.feature_row {
+  .archive__item {
+    background-color: $secondary-color;
+    padding: 1em;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+}

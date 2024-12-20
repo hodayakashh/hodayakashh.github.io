@@ -21,6 +21,12 @@ colors:
   border: "#E0E0E0"
   light: "#F8F8F8"
 
+# CSS Settings
+sass:
+  style: compressed
+extra_css:
+  - /assets/css/main.css
+
 # Site Author
 author:
   name: "Hodaya Kash"
