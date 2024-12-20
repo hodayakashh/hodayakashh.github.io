@@ -1,5 +1,8 @@
+# Theme
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
-minimal_mistakes_skin: "default"
+minimal_mistakes_skin: "air"
+
+# Site Settings
 locale: "en-US"
 title: "Computer Science Notes"
 subtitle: "Bar-Ilan University"
@@ -8,9 +11,15 @@ description: "Lecture notes for Computer Science degree courses"
 url: "https://hodayakashh.github.io"
 baseurl: "/BIU-ComputerScience"
 
-# Display settings
-search: true
-search_full_content: true
+# Site Colors
+colors:
+  background: "#F1F0E8"
+  text: "#2D2D2D"
+  primary: "#B3C8CF"
+  secondary: "#EBE3D5"
+  accent: "#8CA7B0"
+  border: "#E0E0E0"
+  light: "#F8F8F8"
 
 # Site Author
 author:
@@ -33,6 +42,10 @@ footer:
 # Reading Files
 include:
   - _pages
+
+# Search
+search: true
+search_full_content: true
 
 # Defaults
 defaults:
