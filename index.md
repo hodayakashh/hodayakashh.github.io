@@ -1,8 +1,3 @@
----
-layout: default
-title: "Computer Science Notes"
----
-
 # Computer Science Notes - Bar-Ilan University
 
 Welcome to my collection of lecture notes and study materials for Computer Science courses at Bar-Ilan University (2024-2026).
