@@ -3,7 +3,7 @@
 
 @charset "utf-8";
 
-/* Colors - הגדרת המשתנים */
+/* Colors */
 $background-color: #F1F0E8;
 $text-color: #2D2D2D;
 $primary-color: #B3C8CF;
@@ -12,7 +12,12 @@ $accent-color: #8CA7B0;
 $border-color: #E0E0E0;
 $light-color: #F8F8F8;
 
-/* Custom styling */
+/* Main Elements */
+body {
+  background-color: $background-color;
+  color: $text-color;
+}
+
 .page__content {
   background-color: $background-color;
   color: $text-color;
@@ -29,7 +34,7 @@ $light-color: #F8F8F8;
   }
 }
 
-/* Recent Updates section styling */
+/* Recent Updates */
 .recent-updates {
   background-color: $light-color;
   padding: 2em;
@@ -54,6 +59,7 @@ $light-color: #F8F8F8;
   font-size: 0.85em;
 }
 
+/* Feature Row */
 .feature_row {
   .archive__item {
     background-color: $secondary-color;
