@@ -14,8 +14,6 @@ Welcome to my collection of lecture notes and study materials for Computer Scien
 - Operating Systems
 - Computer Architecture
 - Probability and Statistics
-
-## Skills & Tools
 - Programming Languages: Python, Java, C++
 - Development Tools
 - Theoretical Concepts
