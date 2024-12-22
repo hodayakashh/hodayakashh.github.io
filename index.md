@@ -3,6 +3,11 @@ layout: single
 title: "Computer Science Notes"
 permalink: /
 author_profile: true
+classes:
+  - wide
+  - landing
+sidebar:
+  nav: "main"
 toc: true
 toc_sticky: true
 ---
