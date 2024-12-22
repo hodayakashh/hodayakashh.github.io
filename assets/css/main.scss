@@ -1,36 +1,35 @@
 ---
 ---
-
 @charset "utf-8";
 
 /* Colors */
-$background-color: #F1F0E8;
-$text-color: #2D2D2D;
-$primary-color: #B3C8CF;
-$secondary-color: #EBE3D5;
-$accent-color: #8CA7B0;
+$background-color: #F1F0E8 !important;
+$text-color: #2D2D2D !important;
+$primary-color: #B3C8CF !important;
+$secondary-color: #EBE3D5 !important;
+$accent-color: #8CA7B0 !important;
 $border-color: #E0E0E0;
 $light-color: #F8F8F8;
 
 /* Main Elements */
 body {
-  background-color: $background-color;
-  color: $text-color;
+  background-color: $background-color !important;
+  color: $text-color !important;
 }
 
 .page__content {
-  background-color: $background-color;
-  color: $text-color;
+  background-color: $background-color !important;
+  color: $text-color !important;
 }
 
 .nav__items {
-  background-color: $secondary-color;
+  background-color: $secondary-color !important;
 }
 
 .btn--primary {
-  background-color: $accent-color;
+  background-color: $accent-color !important;
   &:hover {
-    background-color: darken($accent-color, 10%);
+    background-color: darken($accent-color, 10%) !important;
   }
 }
 
