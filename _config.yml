@@ -23,9 +23,12 @@ colors:
 
 # CSS Settings
 sass:
+  sass_dir: _sass
   style: compressed
+  quiet_deps: true
 extra_css:
-  - /assets/css/main.css
+  - /assets/css/main.scss
+  
 # Plugins
 plugins:
   - jekyll-paginate
