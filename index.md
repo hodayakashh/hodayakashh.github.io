@@ -1,33 +1,24 @@
----
-layout: single
-title: "Computer Science Notes"
-permalink: /
-author_profile: true
-classes:
-  - wide
-  - landing
-sidebar:
-  nav: "main"
-toc: true
-toc_sticky: true
----
-
-# Computer Science Notes - Bar-Ilan University
-
-Welcome to my collection of lecture notes and study materials for Computer Science courses at Bar-Ilan University (2024-2026).
-
-## Year 1
-- Data Structures
-- Introduction to Computer Science
-- Linear Algebra
-- Calculus
-- Discrete Mathematics
-
-## Year 2
-- Algorithms
-- Operating Systems
-- Computer Architecture
-- Probability and Statistics
-- Programming Languages: Python, Java, C++
-- Development Tools
-- Theoretical Concepts
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Personal Website</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Website</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="lecture-notes.html">Lecture Notes</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>About Me</h2>
+            <p>Hello! This is my personal website where I share my lecture notes.</p>
+        </section>
+    </main>
+</body>
+</html>
