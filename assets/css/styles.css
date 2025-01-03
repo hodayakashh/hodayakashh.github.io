@@ -17,11 +17,30 @@ nav a {
     text-decoration: none;
 }
 
+/* PDF Gallery Container */
 .pdf-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Loading State */
+.pdf-loading {
+    padding: 20px;
+    background: #e3f2fd;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Error State */
+.pdf-error {
+    padding: 20px;
+    background: #fff3f3;
+    border: 1px solid #ffcdd2;
+    border-radius: 4px;
+    color: #b71c1c;
+    text-align: center;
 }
 
 .pdf-viewer {
@@ -40,4 +59,41 @@ nav a {
     z-index: 10;
     background: white;
     border: 3px solid black;
+}
+
+.pdf-thumbnail {
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+}
+
+.pdf-thumbnail:hover {
+    transform: scale(1.05);
+}
+
+.pdf-thumbnail canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* PDF Label */
+.pdf-label {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    word-break: break-word;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pdf-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
 }
