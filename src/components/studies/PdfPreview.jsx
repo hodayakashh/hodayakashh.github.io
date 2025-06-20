@@ -34,17 +34,10 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
     e.preventDefault();
     e.stopPropagation();
 
-    const newTab = window.open('', '_blank', 'noopener,noreferrer'); // פתח מידית כדי למנוע חסימה
-
     try {
       const response = await fetch(fileUrl);
       const blob = await response.blob();
       const downloadUrl = window.URL.createObjectURL(blob);
-
-      // טען את הקובץ בחלון החדש
-      if (newTab) {
-        newTab.location.href = downloadUrl;
-      }
 
       // עדכון מונה ההורדות
       try {
@@ -54,15 +47,16 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
         console.error("Failed to update download count:", err);
       }
 
+      // פתיחת הקובץ בטאב חדש (אחרי שהקישור מוכן)
+      const newTab = window.open(downloadUrl, '_blank', 'noopener,noreferrer');
+
       // ניקוי כתובת הקובץ לאחר 5 שניות
       setTimeout(() => {
         window.URL.revokeObjectURL(downloadUrl);
       }, 5000);
     } catch (error) {
       console.error('Download error:', error);
-      if (newTab) {
-        newTab.location.href = fileUrl; // fallback במקרה של שגיאה
-      }
+      window.open(fileUrl, '_blank', 'noopener,noreferrer'); // fallback
     }
   };
   
