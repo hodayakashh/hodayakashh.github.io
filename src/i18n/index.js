@@ -13,16 +13,16 @@ i18n
   .init({
     resources: {
       en: { 
-        translation: en, // הוספנו את קובץ התרגום הכללי
+        translation: en, 
         home: homeEn 
       },
       he: { 
-        translation: he, // הוספנו את קובץ התרגום הכללי
+        translation: he,
         home: homeHe 
       }
     },
     fallbackLng: "en",
-    defaultNS: "translation", // שינינו ל-translation כברירת מחדל
+    defaultNS: "translation", 
     interpolation: {
       escapeValue: false
     }
