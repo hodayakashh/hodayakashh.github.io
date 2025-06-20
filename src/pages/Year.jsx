@@ -113,9 +113,6 @@ export default function YearPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-gradient mb-4">
             {getTranslatedValue(year.name, i18n)}
           </h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            {getTranslatedValue(year.description, i18n)}
-          </p>
         </div>
       </motion.div>
 
