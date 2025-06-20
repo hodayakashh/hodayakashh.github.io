@@ -6,7 +6,7 @@ import Studies from "./Studies";
 
 import Year from "./Year";
 
-import { HashRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 const PAGES = {
     
