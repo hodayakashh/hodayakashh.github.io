@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 export default defineConfig({
-  base: '/HodayaKashkash/',
   plugins: [react()],
   server: {
     allowedHosts: true
@@ -21,4 +20,4 @@ export default defineConfig({
       },
     },
   },
-}) 
+})
