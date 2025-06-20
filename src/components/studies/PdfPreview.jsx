@@ -10,6 +10,7 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
   const [previewError, setPreviewError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [likeCount, setLikeCount] = useState(0);
+  const [downloadCount, setDownloadCount] = useState(0);
   const loadingTimeout = useRef(null);
 
   if (!fileUrl) return null;
@@ -43,6 +44,12 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(downloadUrl);
+      try {
+        const downloadRef = doc(db, "downloads", title);
+        await setDoc(downloadRef, { count: increment(1) }, { merge: true });
+      } catch (err) {
+        console.error("Failed to update download count:", err);
+      }
     } catch (error) {
       console.error('Download error:', error);
       window.open(fileUrl, '_blank', 'noopener,noreferrer');
@@ -76,7 +83,17 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
         setLikeCount(docSnap.data().count || 0);
       }
     };
-    if (title) fetchLikes();
+    const fetchDownloads = async () => {
+      const docRef = doc(db, "downloads", title);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setDownloadCount(docSnap.data().count || 0);
+      }
+    };
+    if (title) {
+      fetchLikes();
+      fetchDownloads();
+    }
   }, [title]);
 
   const handleLike = async () => {
@@ -162,6 +179,9 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
             <Download className="w-4 h-4" />
             Download
           </Button>
+          <div className="flex items-center gap-1 text-slate-600 text-sm">
+            ⬇️ <span>{downloadCount}</span>
+          </div>
         </div>
       </div>
     </motion.div>
