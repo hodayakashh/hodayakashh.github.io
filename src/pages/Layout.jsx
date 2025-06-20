@@ -54,7 +54,7 @@ export default function Layout({ children, currentPageName }) {
               <div className="w-8 h-8 bg-[#3D52A0] rounded-lg flex items-center justify-center">
                 <GraduationCap className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-gradient">StudyHub</span>
+              <span className="text-xl font-bold text-gradient">Hodaya's Personal Studyhub</span>
             </Link>
             
             <div className="hidden md:flex items-center space-x-1">
