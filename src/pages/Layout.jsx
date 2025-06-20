@@ -52,7 +52,7 @@ export default function Layout({ children, currentPageName }) {
       {/* Navigation */}
       <nav className="glass-effect sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className={`flex items-center h-16 ${i18n.language === "he" ? "flex-row-reverse justify-between" : "justify-between"}`}>
             <Link to={createPageUrl("Home")} className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-[#3D52A0] rounded-lg flex items-center justify-center">
                 <GraduationCap className="w-5 h-5 text-white" />
@@ -60,7 +60,7 @@ export default function Layout({ children, currentPageName }) {
               <span className="text-xl font-bold text-gradient">Hodaya's Personal Studyhub</span>
             </Link>
             
-            <div className="hidden md:flex items-center space-x-1">
+            <div className={`flex items-center ${i18n.language === "he" ? "space-x-reverse space-x-4" : "space-x-4"}`}>
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -75,8 +75,8 @@ export default function Layout({ children, currentPageName }) {
                   <span className="font-medium">{item.name}</span>
                 </Link>
               ))}
+              <LanguageToggle />
             </div>
-            <LanguageToggle />
           </div>
         </div>
       </nav>
