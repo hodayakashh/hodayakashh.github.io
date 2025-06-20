@@ -159,9 +159,6 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
             <Download className="w-4 h-4" />
             Download
           </Button>
-          <div className="flex items-center gap-1 text-slate-600 text-sm">
-            ⬇️ <span>{downloadCount}</span>
-          </div>
         </div>
       </div>
     </motion.div>
