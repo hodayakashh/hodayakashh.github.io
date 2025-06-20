@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Github, Linkedin, ArrowRight, BookOpen, FileText, Calculator, PenTool } from "lucide-react";
+import { Github, Linkedin, ArrowRight, BookOpen, FileText, Calculator, PenTool, Download } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -7,13 +7,15 @@ import { createPageUrl } from "@/utils";
 import { motion } from "framer-motion";
 import LinkedInPost from "../components/social/LinkedInPost";
 import { db } from "@/lib/firebase";
-import { collection, getDocs, addDoc, updateDoc, doc, query, orderBy, limit } from "firebase/firestore";
+import { collection, collectionGroup, getDocs, addDoc, updateDoc, doc, query, orderBy, limit } from "firebase/firestore";
 import localAvatar from "@/media/profile.jpeg";
 
 export default function Home() {
   const [profile, setProfile] = useState(null);
   const [featuredMaterials, setFeaturedMaterials] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [totalCourses, setTotalCourses] = useState(0);
+  const [totalDownloads, setTotalDownloads] = useState(0);
 
   const loadData = useCallback(async () => {
     setIsLoading(true);
@@ -80,6 +82,18 @@ export default function Home() {
         .sort((a, b) => b.created_date.toDate() - a.created_date.toDate());
 
       setFeaturedMaterials(sortedMaterials);
+
+      // Count all courses
+      const courseSnapshot = await getDocs(collectionGroup(db, "courses"));
+      setTotalCourses(courseSnapshot.size);
+
+      // Count all downloads
+      const downloadsSnapshot = await getDocs(collection(db, "downloads"));
+      const totalDownloadsCount = downloadsSnapshot.docs.reduce((acc, doc) => {
+        const data = doc.data();
+        return acc + (typeof data.count === 'number' ? data.count : 0);
+      }, 0);
+      setTotalDownloads(totalDownloadsCount);
 
     } catch (error) {
       console.error("Error loading data:", error);
@@ -330,8 +344,8 @@ export default function Home() {
           {[
             { label: "Study Materials", count: featuredMaterials.length, icon: FileText },
             { label: "Years Tracked", count: "2+", icon: BookOpen },
-            { label: "Courses", count: "15+", icon: Calculator },
-            { label: "Hours Saved", count: "100+", icon: PenTool }
+            { label: "Courses", count: totalCourses, icon: Calculator },
+            { label: "Downloads", count: totalDownloads, icon: Download }
           ].map((stat, index) => (
             <div key={index} className="bg-white/80 rounded-xl p-6 border-0 shadow-lg">
               <stat.icon className="w-8 h-8 text-[#7091E6] mx-auto mb-2" />
