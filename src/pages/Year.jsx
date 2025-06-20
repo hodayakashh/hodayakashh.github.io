@@ -11,6 +11,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import PdfPreview from "../components/studies/PdfPreview";
 import { useTranslation } from "react-i18next";
 
+// פונקציית עזר לקבלת ערך מתורגם
+const getTranslatedValue = (field, i18n) => {
+  if (typeof field === "string") return field;
+  return field?.[i18n.language] || field?.en || "";
+};
+
 export default function YearPage() {
   const { t, i18n } = useTranslation("year");
 
@@ -105,8 +111,11 @@ export default function YearPage() {
         </Link>
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gradient mb-4">
-            {year.name?.[i18n.language] || year.name?.en}
+            {getTranslatedValue(year.name, i18n)}
           </h1>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            {getTranslatedValue(year.description, i18n)}
+          </p>
         </div>
       </motion.div>
 
@@ -150,7 +159,7 @@ export default function YearPage() {
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center space-x-2 mb-1">
                                 <h3 className="text-xl font-semibold text-slate-900 truncate">
-                                  {course.name?.[i18n.language] || course.name?.en}
+                                  {getTranslatedValue(course.name, i18n)}
                                 </h3>
                               </div>
                               <div className="flex items-center space-x-3 text-sm text-slate-600">
@@ -163,7 +172,7 @@ export default function YearPage() {
                               </div>
                               {course.description && (
                                 <p className="text-sm text-slate-600 mt-2 line-clamp-2">
-                                  {course.description?.[i18n.language] || course.description?.en}
+                                  {getTranslatedValue(course.description, i18n)}
                                 </p>
                               )}
                             </div>

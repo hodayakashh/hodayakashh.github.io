@@ -100,9 +100,6 @@ export default function Studies() {
                     </div>
                   </CardHeader>
                   <CardContent className="p-6 pt-0">
-                    <p className="text-slate-600 mb-4 h-12">
-                      {year.description || t("defaultYearDescription", { count: courseCounts[year.id] || 0, year: year.name })}
-                    </p>
                     <div className="flex justify-between items-center">
                       <Badge variant="outline" className="bg-[#EDE8F5] border-[#ADBBD4]">
                         {courseCounts[year.id] || 0} {t("courses")}
