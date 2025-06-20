@@ -33,30 +33,26 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
   const handleDownload = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-
     try {
       const response = await fetch(fileUrl);
       const blob = await response.blob();
       const downloadUrl = window.URL.createObjectURL(blob);
-
-      // עדכון מונה ההורדות
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = title ? `${title}.pdf` : 'document.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(downloadUrl);
       try {
         const downloadRef = doc(db, "downloads", title);
         await setDoc(downloadRef, { count: increment(1) }, { merge: true });
       } catch (err) {
         console.error("Failed to update download count:", err);
       }
-
-      // פתיחת הקובץ בטאב חדש (אחרי שהקישור מוכן)
-      const newTab = window.open(downloadUrl, '_blank', 'noopener,noreferrer');
-
-      // ניקוי כתובת הקובץ לאחר 5 שניות
-      setTimeout(() => {
-        window.URL.revokeObjectURL(downloadUrl);
-      }, 5000);
     } catch (error) {
       console.error('Download error:', error);
-      window.open(fileUrl, '_blank', 'noopener,noreferrer'); // fallback
+      window.open(fileUrl, '_blank', 'noopener,noreferrer');
     }
   };
   
