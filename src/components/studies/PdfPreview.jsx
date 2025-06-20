@@ -12,7 +12,6 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
   const [likeCount, setLikeCount] = useState(0);
   const [downloadCount, setDownloadCount] = useState(0);
   const loadingTimeout = useRef(null);
-  const [showPopupHelp, setShowPopupHelp] = useState(false);
 
   if (!fileUrl) return null;
 
@@ -31,34 +30,10 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
     setIsLoading(false);
   };
 
-  const handleDownload = async (e) => {
+  const handleDownload = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
-    try {
-      // ניסיון הורדה רגילה
-      const response = await fetch(fileUrl);
-      const blob = await response.blob();
-      const downloadUrl = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.download = title ? `${title}.pdf` : 'document.pdf';
-      link.style.display = 'none';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(downloadUrl);
-      
-      // עדכון מונה
-      const downloadRef = doc(db, "downloads", title);
-      await setDoc(downloadRef, { count: increment(1) }, { merge: true });
-      setDownloadCount(prev => prev + 1);
-      
-    } catch (error) {
-      // אם נכשל - הצג הודעה עם הנחיות
-      console.error('Download error:', error);
-      setShowPopupHelp(true);
-    }
+    window.open(fileUrl, '_blank');
   };
   
   const handleFullView = (e) => {
