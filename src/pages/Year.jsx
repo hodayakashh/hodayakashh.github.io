@@ -107,9 +107,6 @@ export default function YearPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-gradient mb-4">
             {year.name?.[i18n.language] || year.name?.en}
           </h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            {year.description?.[i18n.language] || year.description?.en}
-          </p>
         </div>
       </motion.div>
 
