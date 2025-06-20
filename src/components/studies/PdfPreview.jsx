@@ -11,6 +11,7 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
   const [isLoading, setIsLoading] = useState(true);
   const [likeCount, setLikeCount] = useState(0);
   const [downloadCount, setDownloadCount] = useState(0);
+  const [confirmDownload, setConfirmDownload] = useState(false);
   const loadingTimeout = useRef(null);
 
   if (!fileUrl) return null;
@@ -174,7 +175,7 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
             variant="outline" 
             size="sm" 
             className="flex-1 gap-2 bg-white hover:bg-slate-50"
-            onClick={handleDownload}
+            onClick={() => setConfirmDownload(true)}
           >
             <Download className="w-4 h-4" />
             Download
@@ -183,6 +184,28 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
             ⬇️ <span>{downloadCount}</span>
           </div>
         </div>
+        {confirmDownload && (
+          <div className="flex items-center gap-2 pt-2 border-t border-slate-200">
+            <span className="text-sm text-slate-700">Do you want to download this file?</span>
+            <Button
+              variant="default"
+              size="sm"
+              onClick={(e) => {
+                handleDownload(e);
+                setConfirmDownload(false);
+              }}
+            >
+              Yes, download
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setConfirmDownload(false)}
+            >
+              Cancel
+            </Button>
+          </div>
+        )}
       </div>
     </motion.div>
   );
