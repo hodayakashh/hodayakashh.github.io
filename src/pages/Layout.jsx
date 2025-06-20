@@ -8,11 +8,11 @@ import LanguageToggle from "@/components/ui/languageToggle";
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
   
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const navigation = [
-    { name: "Home", href: createPageUrl("Home"), icon: Home },
-    { name: "Studies", href: createPageUrl("Studies"), icon: BookOpen },
+    { name: t("navigation.home"), href: createPageUrl("Home"), icon: Home },
+    { name: t("navigation.studies"), href: createPageUrl("Studies"), icon: BookOpen },
   ];
 
   const isActive = (href) => location.pathname === href;

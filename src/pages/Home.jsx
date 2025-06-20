@@ -34,7 +34,7 @@ export default function Home() {
 
           Throughout my academic journey, I've compiled useful materials and insights that make complex topics more approachable.
 
-          *What can you find on this site?*  
+          What can you find on this site? 
           Comprehensive course summaries, homework solutions, quick exam review sheets, and other resources.`,         
           github_url: "https://github.com/hodayakashh",
           linkedin_url: "https://linkedin.com/in/hodayakash",
@@ -205,7 +205,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg">GitHub</h3>
-                    <p className="text-slate-500">View my projects</p>
+                    <p className="text-slate-500">{t("home.viewProjects")}</p>
                   </div>
                   <ArrowRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
@@ -227,7 +227,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg">LinkedIn</h3>
-                    <p className="text-slate-500">Professional profile</p>
+                    <p className="text-slate-500">{t("home.professionalProfile")}</p>
                   </div>
                   <ArrowRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>

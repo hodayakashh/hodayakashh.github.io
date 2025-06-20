@@ -1,4 +1,8 @@
 {
   "welcome": "Welcome to my study site!",
-  "description": "Find summaries, homework solutions and more."
+  "description": "Find summaries, homework solutions and more.",
+    "navigation": {
+        "home": "Home",
+        "studies": "Studies"
+  }
 }
