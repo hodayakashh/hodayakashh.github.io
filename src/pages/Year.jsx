@@ -12,7 +12,7 @@ import PdfPreview from "../components/studies/PdfPreview";
 import { useTranslation } from "react-i18next";
 
 export default function YearPage() {
-  const { t } = useTranslation("year");
+  const { t, i18n } = useTranslation("year");
 
   const [year, setYear] = useState(null);
   const [courses, setCourses] = useState([]);
@@ -104,8 +104,12 @@ export default function YearPage() {
           {t("backAcademicYears")}
         </Link>
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gradient mb-4">{year.name}</h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">{year.description}</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-gradient mb-4">
+            {year.name?.[i18n.language] || year.name?.en}
+          </h1>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            {year.description?.[i18n.language] || year.description?.en}
+          </p>
         </div>
       </motion.div>
 
@@ -148,7 +152,9 @@ export default function YearPage() {
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center space-x-2 mb-1">
-                                <h3 className="text-xl font-semibold text-slate-900 truncate">{course.name}</h3>
+                                <h3 className="text-xl font-semibold text-slate-900 truncate">
+                                  {course.name?.[i18n.language] || course.name?.en}
+                                </h3>
                               </div>
                               <div className="flex items-center space-x-3 text-sm text-slate-600">
                                 {course.semester && (
@@ -160,7 +166,7 @@ export default function YearPage() {
                               </div>
                               {course.description && (
                                 <p className="text-sm text-slate-600 mt-2 line-clamp-2">
-                                  {course.description}
+                                  {course.description?.[i18n.language] || course.description?.en}
                                 </p>
                               )}
                             </div>
