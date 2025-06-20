@@ -11,8 +11,8 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
   const [isLoading, setIsLoading] = useState(true);
   const [likeCount, setLikeCount] = useState(0);
   const [downloadCount, setDownloadCount] = useState(0);
-  const [confirmDownload, setConfirmDownload] = useState(false);
   const loadingTimeout = useRef(null);
+  const [showPopupHelp, setShowPopupHelp] = useState(false);
 
   if (!fileUrl) return null;
 
@@ -34,26 +34,30 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
   const handleDownload = async (e) => {
     e.preventDefault();
     e.stopPropagation();
+    
     try {
+      // ניסיון הורדה רגילה
       const response = await fetch(fileUrl);
       const blob = await response.blob();
       const downloadUrl = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = downloadUrl;
       link.download = title ? `${title}.pdf` : 'document.pdf';
+      link.style.display = 'none';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(downloadUrl);
-      try {
-        const downloadRef = doc(db, "downloads", title);
-        await setDoc(downloadRef, { count: increment(1) }, { merge: true });
-      } catch (err) {
-        console.error("Failed to update download count:", err);
-      }
+      
+      // עדכון מונה
+      const downloadRef = doc(db, "downloads", title);
+      await setDoc(downloadRef, { count: increment(1) }, { merge: true });
+      setDownloadCount(prev => prev + 1);
+      
     } catch (error) {
+      // אם נכשל - הצג הודעה עם הנחיות
       console.error('Download error:', error);
-      window.open(fileUrl, '_blank', 'noopener,noreferrer');
+      setShowPopupHelp(true);
     }
   };
   
@@ -175,7 +179,7 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
             variant="outline" 
             size="sm" 
             className="flex-1 gap-2 bg-white hover:bg-slate-50"
-            onClick={() => setConfirmDownload(true)}
+            onClick={handleDownload}
           >
             <Download className="w-4 h-4" />
             Download
@@ -184,28 +188,6 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
             ⬇️ <span>{downloadCount}</span>
           </div>
         </div>
-        {confirmDownload && (
-          <div className="flex items-center gap-2 pt-2 border-t border-slate-200">
-            <span className="text-sm text-slate-700">Do you want to download this file?</span>
-            <Button
-              variant="default"
-              size="sm"
-              onClick={(e) => {
-                handleDownload(e);
-                setConfirmDownload(false);
-              }}
-            >
-              Yes, download
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setConfirmDownload(false)}
-            >
-              Cancel
-            </Button>
-          </div>
-        )}
       </div>
     </motion.div>
   );
