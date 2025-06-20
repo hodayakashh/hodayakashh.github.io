@@ -16,6 +16,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [totalCourses, setTotalCourses] = useState(0);
   const [totalDownloads, setTotalDownloads] = useState(0);
+  const [totalMaterials, setTotalMaterials] = useState(0);
 
   const loadData = useCallback(async () => {
     setIsLoading(true);
@@ -82,6 +83,7 @@ export default function Home() {
         .sort((a, b) => b.created_date.toDate() - a.created_date.toDate());
 
       setFeaturedMaterials(sortedMaterials);
+      setTotalMaterials(allMaterials.length);
 
       // Count all courses
       const courseSnapshot = await getDocs(collectionGroup(db, "courses"));
@@ -342,7 +344,7 @@ export default function Home() {
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
           {[
-            { label: "Study Materials", count: featuredMaterials.length, icon: FileText },
+            { label: "Study Materials", count: totalMaterials, icon: FileText },
             { label: "Years Tracked", count: "2+", icon: BookOpen },
             { label: "Courses", count: totalCourses, icon: Calculator },
             { label: "Downloads", count: totalDownloads, icon: Download }
