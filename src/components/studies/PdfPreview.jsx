@@ -30,10 +30,18 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
     setIsLoading(false);
   };
 
-  const handleDownload = (e) => {
+  const handleDownload = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     window.open(fileUrl, '_blank');
+    // Update download count after opening the file
+    try {
+      const downloadRef = doc(db, "downloads", title);
+      await setDoc(downloadRef, { count: increment(1) }, { merge: true });
+      setDownloadCount(prev => prev + 1);
+    } catch (error) {
+      console.error("Failed to update download count:", error);
+    }
   };
   
   const handleFullView = (e) => {
