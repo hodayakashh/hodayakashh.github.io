@@ -1,0 +1,17 @@
+{
+  "home": {
+    "title": "Welcome, {{name}}!",
+    "subtitle": "{{title}}",
+    "bio": "Welcome to my personal study hub!\n\nThroughout my academic journey, I've compiled useful materials and insights that make complex topics more approachable.\n\n*What can you find on this site?*  \nComprehensive course summaries, homework solutions, quick exam review sheets, and other resources.",
+    "exploreStudies": "Explore Studies",
+    "recentPosts": "Recent LinkedIn Posts",
+    "featuredMaterials": "Featured Materials",
+    "quickAccess": "Quick access to helpful resources",
+    "stats": {
+      "materials": "Materials",
+      "years": "Years",
+      "courses": "Courses",
+      "downloads": "Downloads"
+    }
+  }
+}

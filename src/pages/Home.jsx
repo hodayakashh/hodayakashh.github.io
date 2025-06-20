@@ -9,8 +9,10 @@ import LinkedInPost from "../components/social/LinkedInPost";
 import { db } from "@/lib/firebase";
 import { collection, collectionGroup, getDocs, addDoc, updateDoc, doc, query, orderBy, limit } from "firebase/firestore";
 import localAvatar from "@/media/profile.jpeg";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+  const { t } = useTranslation();
   const [profile, setProfile] = useState(null);
   const [featuredMaterials, setFeaturedMaterials] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -156,23 +158,25 @@ export default function Home() {
         </div>
         
         <h1 className="text-5xl font-bold text-gradient mb-4">
-          {profile?.name || "Welcome to StudyHub"}
+          {t("home.title", { name: profile?.name || "StudyHub" })}
         </h1>
         
         {profile?.title && (
-          <p className="text-xl text-slate-600 mb-6">{profile.title}</p>
+          <p className="text-xl text-slate-600 mb-6">
+            {t("home.subtitle", { title: profile?.title })}
+          </p>
         )}
         
         <div className="max-w-2xl mx-auto">
           <p className="text-lg text-slate-700 leading-relaxed mb-8">
-            {profile?.bio || "Your personal study companion for managing and showcasing university summaries, lectures, and academic materials."}
+            {t("home.bio")}
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link to={createPageUrl("Studies")}>
             <Button size="lg" className="bg-[#3D52A0] hover:bg-opacity-90 text-white font-semibold px-8 py-3 shadow-lg hover:shadow-xl transition-shadow">
-              Explore Studies
+              {t("home.exploreStudies")}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </Link>
@@ -242,7 +246,9 @@ export default function Home() {
           className="mb-16"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gradient mb-4">Recent LinkedIn Posts</h2>
+            <h2 className="text-3xl font-bold text-gradient mb-4">
+              {t("home.recentPosts")}
+            </h2>
           </div>
 
           <div className="w-full">
@@ -269,9 +275,11 @@ export default function Home() {
           className="mb-16"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gradient mb-4">Featured Study Materials</h2>
+            <h2 className="text-3xl font-bold text-gradient mb-4">
+              {t("home.featuredMaterials")}
+            </h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              Quick access to your most important study resources
+              {t("home.quickAccess")}
             </p>
           </div>
 
@@ -325,10 +333,10 @@ export default function Home() {
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
           {[
-            { label: "Study Materials", count: totalMaterials, icon: FileText },
-            { label: "Years Tracked", count: "2+", icon: BookOpen },
-            { label: "Courses", count: totalCourses, icon: Calculator },
-            { label: "Downloads", count: totalDownloads, icon: Download }
+            { label: t("home.stats.materials"), count: totalMaterials, icon: FileText },
+            { label: t("home.stats.years"), count: "2+", icon: BookOpen },
+            { label: t("home.stats.courses"), count: totalCourses, icon: Calculator },
+            { label: t("home.stats.downloads"), count: totalDownloads, icon: Download }
           ].map((stat, index) => (
             <div key={index} className="bg-white/80 rounded-xl p-6 border-0 shadow-lg">
               <stat.icon className="w-8 h-8 text-[#7091E6] mx-auto mb-2" />
