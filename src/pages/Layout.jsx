@@ -1,12 +1,15 @@
-
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Home, BookOpen, User, Settings, GraduationCap } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import LanguageToggle from "@/components/ui/languageToggle";
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
   
+  const { i18n } = useTranslation();
+
   const navigation = [
     { name: "Home", href: createPageUrl("Home"), icon: Home },
     { name: "Studies", href: createPageUrl("Studies"), icon: BookOpen },
@@ -73,6 +76,7 @@ export default function Layout({ children, currentPageName }) {
                 </Link>
               ))}
             </div>
+            <LanguageToggle />
           </div>
         </div>
       </nav>
