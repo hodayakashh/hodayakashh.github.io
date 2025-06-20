@@ -33,7 +33,7 @@ export default function Home() {
           Throughout my academic journey, I've compiled useful materials and insights that make complex topics more approachable.
 
           *What can you find on this site?*  
-          Comprehensive course summaries, homework solutions, quick exam review sheets, and other resources.`          
+          Comprehensive course summaries, homework solutions, quick exam review sheets, and other resources.`,         
           github_url: "https://github.com/hodayakashh",
           linkedin_url: "https://linkedin.com/in/hodayakash",
           avatar_url: newAvatarUrl
