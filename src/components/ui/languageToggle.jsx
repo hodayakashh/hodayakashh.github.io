@@ -8,7 +8,6 @@ const LanguageToggle = () => {
   const toggleLanguage = () => {
     const newLang = i18n.language === "he" ? "en" : "he";
     i18n.changeLanguage(newLang);
-    document.dir = newLang === "he" ? "rtl" : "ltr";
   };
 
   return (
