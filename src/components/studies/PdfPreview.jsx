@@ -33,6 +33,10 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
   const handleDownload = async (e) => {
     e.preventDefault();
     e.stopPropagation();
+
+    // פתיחה מידית כדי למנוע חסימת popup
+    const newTab = window.open(fileUrl, '_blank', 'noopener,noreferrer');
+
     try {
       const response = await fetch(fileUrl);
       const blob = await response.blob();
@@ -44,6 +48,8 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(downloadUrl);
+
+      // עדכון מונה ההורדות
       try {
         const downloadRef = doc(db, "downloads", title);
         await setDoc(downloadRef, { count: increment(1) }, { merge: true });
@@ -52,7 +58,9 @@ export default function PdfPreview({ fileUrl, title, uploadDate }) {
       }
     } catch (error) {
       console.error('Download error:', error);
-      window.open(fileUrl, '_blank', 'noopener,noreferrer');
+      if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
+        window.open(fileUrl, '_blank', 'noopener,noreferrer');
+      }
     }
   };
   
