@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import LinkedInPost from "../components/social/LinkedInPost";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, addDoc, updateDoc, doc, query, orderBy, limit } from "firebase/firestore";
-
+import localAvatar from "@/media/profile.jpeg";
 
 export default function Home() {
   const [profile, setProfile] = useState(null);
@@ -20,8 +20,7 @@ export default function Home() {
     try {
       const profilesSnapshot = await getDocs(collection(db, "profiles"));
       let profileData;
-      const newAvatarUrl = "https://firebasestorage.googleapis.com/v0/b/hodayakashkash-85596.firebasestorage.app/o/images%2F1733156113403.jpeg?alt=media&token=bdc34ace-82e1-4665-958e-5d1b0b9ae2a4";
-
+      const newAvatarUrl = localAvatar;
       if (profilesSnapshot.empty) {
         const newProfile = {
           name: "Hodaya Kashkash",
