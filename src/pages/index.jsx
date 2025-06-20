@@ -47,8 +47,7 @@ function PagesContent() {
                 
                 <Route path="/Studies" element={<Studies />} />
                             
-                <Route path="/Year/:id" element={<Year />} />
-                
+                <Route path="/Year" element={<Year />} />                
             </Routes>
         </Layout>
     );
