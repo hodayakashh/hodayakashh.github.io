@@ -163,7 +163,7 @@ export default function YearPage() {
                                 </h3>
                               </div>
                               <div className="flex items-center space-x-3 text-sm text-slate-600">
-                                  {course.semester?.en && (
+                                  {course.semester.en && (
                                     <Badge className={`text-xs ${newSemesterColors[course.semester.en]}`}>
                                       <Calendar className="w-3 h-3 mr-1" />
                                       {t("semester", { semester: course.semester?.[i18n.language] || course.semester?.en })}

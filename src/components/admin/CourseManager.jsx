@@ -65,7 +65,7 @@ export default function CourseManager({ onStatsChange }) {
 
   const getYearName = (yearId) => {
     const year = years.find(y => y.id === yearId);
-    return year ? year.name : "Unknown Year";
+    return year ? year.name.en : "Unknown Year";
   };
 
   const semesterColors = {
@@ -115,7 +115,7 @@ export default function CourseManager({ onStatsChange }) {
                   <Label htmlFor="new-course-name">Course Name</Label>
                   <Input
                     id="new-course-name"
-                    value={newCourse.name}
+                    value={newCourse.name.en}
                     onChange={(e) => setNewCourse({...newCourse, name: e.target.value})}
                     placeholder="e.g., Introduction to Computer Science"
                   />
@@ -131,7 +131,7 @@ export default function CourseManager({ onStatsChange }) {
                       <SelectContent>
                         {years.map((year) => (
                           <SelectItem key={year.id} value={year.id}>
-                            {year.name}
+                          {year.name?.[i18n.language] || year.name?.en}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -139,7 +139,7 @@ export default function CourseManager({ onStatsChange }) {
                   </div>
                   <div className="space-y-2">
                     <Label>Semester</Label>
-                    <Select value={newCourse.semester} onValueChange={(value) => setNewCourse({...newCourse, semester: value})}>
+                    <Select value={newCourse.semester.en} onValueChange={(value) => setNewCourse({...newCourse, semester: value})}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select semester" />
                       </SelectTrigger>
@@ -168,7 +168,7 @@ export default function CourseManager({ onStatsChange }) {
                   <Label htmlFor="new-course-description">Description</Label>
                   <Textarea
                     id="new-course-description"
-                    value={newCourse.description}
+                    value={newCourse.description.en}
                     onChange={(e) => setNewCourse({...newCourse, description: e.target.value})}
                     placeholder="Course description"
                     rows={3}
@@ -182,7 +182,7 @@ export default function CourseManager({ onStatsChange }) {
                   </Button>
                   <Button
                     onClick={handleAddCourse}
-                    disabled={!newCourse.name || !newCourse.year_id}
+                    disabled={!newCourse.name.en || !newCourse.year_id}
                     className="bg-[#3D52A0] hover:bg-opacity-90 text-white"
                   >
                     <Save className="w-4 h-4 mr-2" />
@@ -215,19 +215,19 @@ export default function CourseManager({ onStatsChange }) {
                     </div>
                     <div>
                       <div className="flex items-center space-x-2 mb-2">
-                        <h4 className="font-semibold text-lg text-slate-900">{course.name}</h4>
+                        <h4 className="font-semibold text-lg text-slate-900">{course.name.en}</h4>
                       </div>
                       <div className="flex items-center space-x-3 text-sm text-slate-600 mb-2">
                         <span className="font-medium">{getYearName(course.year_id)}</span>
-                        {course.semester && (
-                          <Badge className={`text-xs ${semesterColors[course.semester]}`}>
-                            Semester {course.semester}
+                        {course.semester.en && (
+                          <Badge className={`text-xs ${semesterColors[course.semester.en]}`}>
+                            Semester {course.semester.en}
                           </Badge>
                         )}
                       </div>
-                      {course.description && (
+                      {course.description.en && (
                         <p className="text-sm text-slate-600 max-w-2xl">
-                          {course.description}
+                          {course.description.en}
                         </p>
                       )}
                     </div>

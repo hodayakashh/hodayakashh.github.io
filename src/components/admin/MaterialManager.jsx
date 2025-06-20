@@ -35,14 +35,14 @@ export default function MaterialManager() {
 
   const getCourseName = (courseId) => {
     const course = courses.find(c => c.id === courseId);
-    return course ? course.name : "Unknown Course";
+    return course ? course.name?.[i18n.language] || course.name?.en : "Unknown Course";
   };
 
   const getCourseYear = (courseId) => {
     const course = courses.find(c => c.id === courseId);
     if (!course) return "Unknown";
     const year = years.find(y => y.id === course.year_id);
-    return year ? year.name : "Unknown Year";
+    return year ? year.name?.[i18n.language] || year.name?.en : "Unknown Year";
   };
 
   const materialIcons = {

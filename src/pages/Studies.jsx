@@ -91,9 +91,9 @@ export default function Studies() {
                 <Card className="bg-white/80 border-0 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                   <CardHeader className="p-6">
                     <div className="flex items-center justify-between">
-                      <CardTitle className="text-2xl text-slate-900 group-hover:text-[#3D52A0] transition-colors">
-                        {year.name}
-                      </CardTitle>
+                        <CardTitle className="text-2xl text-slate-900 group-hover:text-[#3D52A0] transition-colors">
+                          {year.name?.[i18n.language] || year.name?.en}
+                        </CardTitle>
                       <div className="w-12 h-12 bg-[#3D52A0] rounded-lg flex items-center justify-center text-white font-bold text-lg">
                         {year.year_number}
                       </div>

@@ -82,7 +82,7 @@ export default function YearManager({ onStatsChange }) {
                     <Label htmlFor="new-year-name">Year Name</Label>
                     <Input
                       id="new-year-name"
-                      value={newYear.name}
+                      value={newYear.name.en}
                       onChange={(e) => setNewYear({...newYear, name: e.target.value})}
                       placeholder="e.g., First Year, Sophomore Year"
                     />
@@ -97,16 +97,6 @@ export default function YearManager({ onStatsChange }) {
                       placeholder="1, 2, 3..."
                     />
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="new-year-description">Description (Optional)</Label>
-                  <Textarea
-                    id="new-year-description"
-                    value={newYear.description}
-                    onChange={(e) => setNewYear({...newYear, description: e.target.value})}
-                    placeholder="Description of this academic year"
-                    rows={2}
-                  />
                 </div>
                 <div className="flex justify-end space-x-2">
                   <Button variant="outline" onClick={() => setShowAddForm(false)}>
@@ -140,11 +130,8 @@ export default function YearManager({ onStatsChange }) {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="font-semibold text-lg text-slate-900">{year.name}</h4>
+                    <h4 className="font-semibold text-lg text-slate-900">{year.name.en}</h4>
                     <p className="text-sm text-slate-600">Year {year.year_number}</p>
-                    {year.description && (
-                      <p className="text-sm text-slate-500 mt-1">{year.description}</p>
-                    )}
                   </div>
                 </div>
               </CardContent>
