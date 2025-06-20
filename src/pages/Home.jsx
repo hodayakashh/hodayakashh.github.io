@@ -158,25 +158,25 @@ export default function Home() {
         </div>
         
         <h1 className="text-5xl font-bold text-gradient mb-4">
-          {t("home.title", { name: profile?.name || "StudyHub" })}
+          {t("home:title", { name: profile?.name || "StudyHub" })}
         </h1>
         
         {profile?.title && (
           <p className="text-xl text-slate-600 mb-6">
-            {t("home.subtitle", { title: profile?.title })}
+            {t("home:subtitle", { title: profile?.title })}
           </p>
         )}
         
         <div className="max-w-2xl mx-auto">
           <p className="text-lg text-slate-700 leading-relaxed mb-8">
-            {t("home.bio")}
+            {t("home:bio")}
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link to={createPageUrl("Studies")}>
             <Button size="lg" className="bg-[#3D52A0] hover:bg-opacity-90 text-white font-semibold px-8 py-3 shadow-lg hover:shadow-xl transition-shadow">
-              {t("home.exploreStudies")}
+              {t("home:exploreStudies")}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </Link>
@@ -205,7 +205,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg">GitHub</h3>
-                    <p className="text-slate-500">{t("home.viewProjects")}</p>
+                    <p className="text-slate-500">{t("home:viewProjects")}</p>
                   </div>
                   <ArrowRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
@@ -227,7 +227,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg">LinkedIn</h3>
-                    <p className="text-slate-500">{t("home.professionalProfile")}</p>
+                    <p className="text-slate-500">{t("home:professionalProfile")}</p>
                   </div>
                   <ArrowRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
@@ -247,7 +247,7 @@ export default function Home() {
         >
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gradient mb-4">
-              {t("home.recentPosts")}
+              {t("home:recentPosts")}
             </h2>
           </div>
 
@@ -276,10 +276,10 @@ export default function Home() {
         >
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gradient mb-4">
-              {t("home.featuredMaterials")}
+              {t("home:featuredMaterials")}
             </h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              {t("home.quickAccess")}
+              {t("home:quickAccess")}
             </p>
           </div>
 
@@ -333,10 +333,10 @@ export default function Home() {
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
           {[
-            { label: t("home.stats.materials"), count: totalMaterials, icon: FileText },
-            { label: t("home.stats.years"), count: "2+", icon: BookOpen },
-            { label: t("home.stats.courses"), count: totalCourses, icon: Calculator },
-            { label: t("home.stats.downloads"), count: totalDownloads, icon: Download }
+            { label: t("home:stats.materials"), count: totalMaterials, icon: FileText },
+            { label: t("home:stats.years"), count: "2+", icon: BookOpen },
+            { label: t("home:stats.courses"), count: totalCourses, icon: Calculator },
+            { label: t("home:stats.downloads"), count: totalDownloads, icon: Download }
           ].map((stat, index) => (
             <div key={index} className="bg-white/80 rounded-xl p-6 border-0 shadow-lg">
               <stat.icon className="w-8 h-8 text-[#7091E6] mx-auto mb-2" />
