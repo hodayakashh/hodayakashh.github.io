@@ -52,7 +52,7 @@ export default function Layout({ children, currentPageName }) {
       {/* Navigation */}
       <nav className="glass-effect sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center h-16 justify-between" dir={i18n.language === "he" ? "rtl" : "ltr"}>
+          <div className="flex items-center h-16 justify-between">
             <Link to={createPageUrl("Home")} className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-[#3D52A0] rounded-lg flex items-center justify-center">
                 <GraduationCap className="w-5 h-5 text-white" />
