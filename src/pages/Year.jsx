@@ -163,18 +163,18 @@ export default function YearPage() {
                                 </h3>
                               </div>
                               <div className="flex items-center space-x-3 text-sm text-slate-600">
-                                {course.semester && (
-                                  <Badge className={`text-xs ${newSemesterColors[course.semester]}`}>
-                                    <Calendar className="w-3 h-3 mr-1" />
-                                    {t("semester", { semester: course.semester })}
-                                  </Badge>
-                                )}
+                                  {course.semester?.en && (
+                                    <Badge className={`text-xs ${newSemesterColors[course.semester.en]}`}>
+                                      <Calendar className="w-3 h-3 mr-1" />
+                                      {t("semester", { semester: course.semester?.[i18n.language] || course.semester?.en })}
+                                    </Badge>
+                                  )}
                               </div>
-                              {course.description && (
+                              {course.description?.[i18n.language] || course.description?.en ? (
                                 <p className="text-sm text-slate-600 mt-2 line-clamp-2">
                                   {getTranslatedValue(course.description, i18n)}
                                 </p>
-                              )}
+                              ) : null}
                             </div>
                           </div>
                           <div className="flex items-center space-x-3">
