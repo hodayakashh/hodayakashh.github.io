@@ -27,12 +27,15 @@ export default function Home() {
       if (profilesSnapshot.empty) {
         const newProfile = {
           name: "Hodaya Kashkash",
-          title: "Computer Science Student",
-          bio: "Welcome to my personal study hub. Here you can find my course summaries, notes, and other materials from my academic journey.",
+          title: "Computer Science Student, Bar-Ilan University",
+          bio: `Welcome to my personal study hub!
+
+          Throughout my academic journey, I've compiled useful materials and insights that make complex topics more approachable.
+
+          *What can you find on this site?*  
+          Comprehensive course summaries, homework solutions, quick exam review sheets, and other resources.`          
           github_url: "https://github.com/hodayakashh",
           linkedin_url: "https://linkedin.com/in/hodayakash",
-          university: "My University",
-          major: "Computer Science",
           avatar_url: newAvatarUrl
         };
         const docRef = await addDoc(collection(db, "profiles"), newProfile);
@@ -240,9 +243,6 @@ export default function Home() {
         >
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gradient mb-4">Recent LinkedIn Posts</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
-              Latest updates and insights from my professional journey
-            </p>
           </div>
 
           <div className="w-full">
@@ -257,22 +257,6 @@ export default function Home() {
               />
             </motion.div>
           </div>
-
-          {profile?.linkedin_url && (
-            <div className="text-center mt-8">
-              <a 
-                href={profile.linkedin_url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <Button variant="outline" className="border-[#ADBBD4] bg-white/80 hover:bg-white text-[#3D52A0] shadow-sm">
-                  <Linkedin className="w-4 h-4 mr-2" />
-                  View All Posts on LinkedIn
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </a>
-            </div>
-          )}
         </motion.div>
       )}
 
