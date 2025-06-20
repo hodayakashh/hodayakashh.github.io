@@ -77,7 +77,6 @@ export default function Home() {
         }
       }
 
-      // מיין את החומרים לפי created_date
       const sortedMaterials = allMaterials
         .filter(m => m.created_date)
         .sort((a, b) => b.created_date.toDate() - a.created_date.toDate());
@@ -85,11 +84,9 @@ export default function Home() {
       setFeaturedMaterials(sortedMaterials);
       setTotalMaterials(allMaterials.length);
 
-      // Count all courses
       const courseSnapshot = await getDocs(collectionGroup(db, "courses"));
       setTotalCourses(courseSnapshot.size);
 
-      // Count all downloads
       const downloadsSnapshot = await getDocs(collection(db, "downloads"));
       const totalDownloadsCount = downloadsSnapshot.docs.reduce((acc, doc) => {
         const data = doc.data();
