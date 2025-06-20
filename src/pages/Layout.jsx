@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -14,8 +15,7 @@ export default function Layout({ children, currentPageName }) {
   const isActive = (href) => location.pathname === href;
 
   return (
-    <div className="min-h-screen pastel-bg">
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet" />
+    <div className="min-h-screen bg-[#EDE8F5]">
       <style>
         {`
           :root {
@@ -27,7 +27,7 @@ export default function Layout({ children, currentPageName }) {
           }
           
           body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: #1e293b; /* slate-800 */
           }
           
@@ -42,10 +42,6 @@ export default function Layout({ children, currentPageName }) {
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-          }
-
-          .pastel-bg {
-            background: linear-gradient(to bottom right, #f5ebe0, #fff1e6);
           }
         `}
       </style>
@@ -62,30 +58,20 @@ export default function Layout({ children, currentPageName }) {
             </Link>
             
             <div className="hidden md:flex items-center space-x-1">
-              {navigation.map((item) => {
-                const pastelColors = {
-                  Home: "bg-[#fff1e6]",
-                  Studies: "bg-[#eae4e9]",
-                  Default: "bg-[#fde2e4]"
-                };
-
-                const buttonColor = pastelColors[item.name] || pastelColors.Default;
-
-                return (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
-                      isActive(item.href)
-                        ? `${buttonColor} text-[#3D52A0] shadow-sm`
-                        : `${buttonColor} text-slate-600 hover:brightness-110`
-                    }`}
-                  >
-                    <item.icon className="w-4 h-4" />
-                    <span className="font-medium">{item.name}</span>
-                  </Link>
-                );
-              })}
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
+                    isActive(item.href)
+                      ? "bg-white text-[#3D52A0] shadow-sm"
+                      : "text-slate-600 hover:bg-white/80 hover:text-slate-900"
+                  }`}
+                >
+                  <item.icon className="w-4 h-4" />
+                  <span className="font-medium">{item.name}</span>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
