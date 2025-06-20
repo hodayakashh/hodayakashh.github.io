@@ -12,11 +12,17 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: { home: homeEn },
-      he: { home: homeHe }
+      en: { 
+        translation: en, // הוספנו את קובץ התרגום הכללי
+        home: homeEn 
+      },
+      he: { 
+        translation: he, // הוספנו את קובץ התרגום הכללי
+        home: homeHe 
+      }
     },
     fallbackLng: "en",
-    defaultNS: "home",
+    defaultNS: "translation", // שינינו ל-translation כברירת מחדל
     interpolation: {
       escapeValue: false
     }
