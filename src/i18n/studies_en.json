@@ -1,0 +1,9 @@
+{
+  "academicYears": "Academic Years",
+  "selectAcademicYear": "Select an academic year to explore the courses and study materials.",
+  "noStudyYearsAdded": "No Study Years Added",
+  "placeholderStudyYears": "Your academic years will appear here once you add them in the admin panel.",
+  "defaultYearDescription": "Explore {{count}} courses from my {{year}}.",
+  "courses": "Courses",
+  "viewYear": "View Year"
+}

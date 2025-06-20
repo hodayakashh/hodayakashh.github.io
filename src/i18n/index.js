@@ -6,6 +6,11 @@ import en from "./en.json";
 import he from "./he.json";
 import homeEn from "./home_en.json";
 import homeHe from "./home_he.json";
+import studiesEn from "./studies_en.json";
+import studiesHe from "./studies_he.json";
+import yearEn from "./year_en.json";
+import yearHe from "./year_he.json";
+import Studies from "@/pages/Studies";
 
 i18n
   .use(LanguageDetector)
@@ -14,11 +19,15 @@ i18n
     resources: {
       en: { 
         translation: en, 
-        home: homeEn 
+        home: homeEn,
+        studies:studiesEn,
+        year: yearEn
       },
       he: { 
         translation: he,
-        home: homeHe 
+        home: homeHe,
+        studies: studiesHe,
+        year: yearHe
       }
     },
     fallbackLng: "en",

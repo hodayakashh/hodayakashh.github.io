@@ -1,0 +1,11 @@
+{
+    "backAcademicYears": "חזרה לשנים אקדמיות",
+    "yearNotFound": "השנה האקדמית לא נמצאה",
+    "yearNotFoundMessage": "השנה האקדמית המבוקשת לא נמצאה.",
+    "backToStudies": "חזרה ללימודים",
+    "noCoursesAdded": "לא נוספו קורסים",
+    "noCoursesMessage": "קורסים לשנה זו יופיעו כאן לאחר שתוסיף אותם בלוח הניהול.",
+    "semester": "סמסטר {{semester}}",
+    "files": "קבצים",
+    "noMaterialsUploaded": "לא הועלו חומרים ללימודים לקורס זה עדיין."
+}

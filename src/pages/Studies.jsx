@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { fetchStudyYears, fetchCoursesByYear } from "@/api/firebaseApi";
 import { Link } from "react-router-dom";
@@ -7,8 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next"; // הוספת ייבוא useTranslation
 
 export default function Studies() {
+  const { t } = useTranslation("studies"); // שימוש ב-namespace studies
+
   const [studyYears, setStudyYears] = useState([]);
   const [courseCounts, setCourseCounts] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -60,9 +62,9 @@ export default function Studies() {
         transition={{ duration: 0.6 }}
         className="text-center mb-16"
       >
-        <h1 className="text-4xl font-bold text-gradient mb-4">Academic Years</h1>
+        <h1 className="text-4xl font-bold text-gradient mb-4">{t("academicYears")}</h1>
         <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-          Select an academic year to explore the courses and study materials.
+          {t("selectAcademicYear")}
         </p>
       </motion.div>
 
@@ -73,8 +75,8 @@ export default function Studies() {
           className="text-center py-16"
         >
           <BookOpen className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-          <h3 className="text-2xl font-semibold text-slate-600">No Study Years Added</h3>
-          <p className="text-slate-500">Your academic years will appear here once you add them in the admin panel.</p>
+          <h3 className="text-2xl font-semibold text-slate-600">{t("noStudyYearsAdded")}</h3>
+          <p className="text-slate-500">{t("placeholderStudyYears")}</p>
         </motion.div>
       ) : (
         <div className="grid md:grid-cols-2 gap-8">
@@ -89,7 +91,9 @@ export default function Studies() {
                 <Card className="bg-white/80 border-0 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                   <CardHeader className="p-6">
                     <div className="flex items-center justify-between">
-                      <CardTitle className="text-2xl text-slate-900 group-hover:text-[#3D52A0] transition-colors">{year.name}</CardTitle>
+                      <CardTitle className="text-2xl text-slate-900 group-hover:text-[#3D52A0] transition-colors">
+                        {year.name}
+                      </CardTitle>
                       <div className="w-12 h-12 bg-[#3D52A0] rounded-lg flex items-center justify-center text-white font-bold text-lg">
                         {year.year_number}
                       </div>
@@ -97,14 +101,14 @@ export default function Studies() {
                   </CardHeader>
                   <CardContent className="p-6 pt-0">
                     <p className="text-slate-600 mb-4 h-12">
-                      {year.description || `Explore ${courseCounts[year.id] || 0} courses from my ${year.name.toLowerCase()}.`}
+                      {year.description || t("defaultYearDescription", { count: courseCounts[year.id] || 0, year: year.name.toLowerCase() })}
                     </p>
                     <div className="flex justify-between items-center">
                       <Badge variant="outline" className="bg-[#EDE8F5] border-[#ADBBD4]">
-                        {courseCounts[year.id] || 0} Courses
+                        {courseCounts[year.id] || 0} {t("courses")}
                       </Badge>
                       <div className="flex items-center text-[#3D52A0] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                        View Year
+                        {t("viewYear")}
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </div>
                     </div>
