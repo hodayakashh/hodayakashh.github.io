@@ -1,15 +1,18 @@
-
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Home, BookOpen, User, Settings, GraduationCap } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import LanguageToggle from "@/components/ui/languageToggle";
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
   
+  const { t, i18n } = useTranslation();
+
   const navigation = [
-    { name: "Home", href: createPageUrl("Home"), icon: Home },
-    { name: "Studies", href: createPageUrl("Studies"), icon: BookOpen },
+    { name: t("navigation.home"), href: createPageUrl("Home"), icon: Home },
+    { name: t("navigation.studies"), href: createPageUrl("Studies"), icon: BookOpen },
   ];
 
   const isActive = (href) => location.pathname === href;
@@ -49,15 +52,15 @@ export default function Layout({ children, currentPageName }) {
       {/* Navigation */}
       <nav className="glass-effect sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex items-center h-16 justify-between">
             <Link to={createPageUrl("Home")} className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-[#3D52A0] rounded-lg flex items-center justify-center">
                 <GraduationCap className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-gradient">StudyHub</span>
+              <span className="text-xl font-bold text-gradient">Hodaya's Personal Studyhub</span>
             </Link>
             
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="flex items-center space-x-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -72,6 +75,7 @@ export default function Layout({ children, currentPageName }) {
                   <span className="font-medium">{item.name}</span>
                 </Link>
               ))}
+              <LanguageToggle />
             </div>
           </div>
         </div>

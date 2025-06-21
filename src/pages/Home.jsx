@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Github, Linkedin, ArrowRight, BookOpen, FileText, Calculator, PenTool } from "lucide-react";
+import { Github, Linkedin, ArrowRight, BookOpen, FileText, Calculator, PenTool, Download } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -7,13 +7,19 @@ import { createPageUrl } from "@/utils";
 import { motion } from "framer-motion";
 import LinkedInPost from "../components/social/LinkedInPost";
 import { db } from "@/lib/firebase";
-import { collection, getDocs, addDoc, updateDoc, doc, query, orderBy, limit } from "firebase/firestore";
+import { collection, collectionGroup, getDocs, addDoc, updateDoc, doc, query, orderBy, limit } from "firebase/firestore";
 import localAvatar from "@/media/profile.jpeg";
+import { useTranslation } from "react-i18next";
+
 
 export default function Home() {
+  const { t } = useTranslation('home');
   const [profile, setProfile] = useState(null);
   const [featuredMaterials, setFeaturedMaterials] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [totalCourses, setTotalCourses] = useState(0);
+  const [totalDownloads, setTotalDownloads] = useState(0);
+  const [totalMaterials, setTotalMaterials] = useState(0);
 
   const loadData = useCallback(async () => {
     setIsLoading(true);
@@ -24,12 +30,15 @@ export default function Home() {
       if (profilesSnapshot.empty) {
         const newProfile = {
           name: "Hodaya Kashkash",
-          title: "Computer Science Student",
-          bio: "Welcome to my personal study hub. Here you can find my course summaries, notes, and other materials from my academic journey.",
+          title: "Computer Science Student, Bar-Ilan University",
+          bio: `Welcome to my personal study hub!
+
+          Throughout my academic journey, I've compiled useful materials and insights that make complex topics more approachable.
+
+          What can you find on this site? 
+          Comprehensive course summaries, homework solutions, quick exam review sheets, and other resources.`,         
           github_url: "https://github.com/hodayakashh",
           linkedin_url: "https://linkedin.com/in/hodayakash",
-          university: "My University",
-          major: "Computer Science",
           avatar_url: newAvatarUrl
         };
         const docRef = await addDoc(collection(db, "profiles"), newProfile);
@@ -74,12 +83,22 @@ export default function Home() {
         }
       }
 
-      // מיין את החומרים לפי created_date
       const sortedMaterials = allMaterials
         .filter(m => m.created_date)
         .sort((a, b) => b.created_date.toDate() - a.created_date.toDate());
 
       setFeaturedMaterials(sortedMaterials);
+      setTotalMaterials(allMaterials.length);
+
+      const courseSnapshot = await getDocs(collectionGroup(db, "courses"));
+      setTotalCourses(courseSnapshot.size);
+
+      const downloadsSnapshot = await getDocs(collection(db, "downloads"));
+      const totalDownloadsCount = downloadsSnapshot.docs.reduce((acc, doc) => {
+        const data = doc.data();
+        return acc + (typeof data.count === 'number' ? data.count : 0);
+      }, 0);
+      setTotalDownloads(totalDownloadsCount);
 
     } catch (error) {
       console.error("Error loading data:", error);
@@ -140,23 +159,25 @@ export default function Home() {
         </div>
         
         <h1 className="text-5xl font-bold text-gradient mb-4">
-          {profile?.name || "Welcome to StudyHub"}
+          {t("title", { name: profile?.name || "StudyHub" })}
         </h1>
         
         {profile?.title && (
-          <p className="text-xl text-slate-600 mb-6">{profile.title}</p>
+          <p className="text-xl text-slate-600 mb-6">
+            {t("subtitle", { title: profile?.title })}
+          </p>
         )}
         
         <div className="max-w-2xl mx-auto">
           <p className="text-lg text-slate-700 leading-relaxed mb-8">
-            {profile?.bio || "Your personal study companion for managing and showcasing university summaries, lectures, and academic materials."}
+            {t("bio")}
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link to={createPageUrl("Studies")}>
             <Button size="lg" className="bg-[#3D52A0] hover:bg-opacity-90 text-white font-semibold px-8 py-3 shadow-lg hover:shadow-xl transition-shadow">
-              Explore Studies
+              {t("exploreStudies")}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </Link>
@@ -185,7 +206,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg">GitHub</h3>
-                    <p className="text-slate-500">View my projects</p>
+                    <p className="text-slate-500">{t("viewProjects")}</p>
                   </div>
                   <ArrowRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
@@ -207,7 +228,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg">LinkedIn</h3>
-                    <p className="text-slate-500">Professional profile</p>
+                    <p className="text-slate-500">{t("professionalProfile")}</p>
                   </div>
                   <ArrowRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
@@ -226,10 +247,9 @@ export default function Home() {
           className="mb-16"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gradient mb-4">Recent LinkedIn Posts</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
-              Latest updates and insights from my professional journey
-            </p>
+            <h2 className="text-3xl font-bold text-gradient mb-4">
+              {t("recentPosts")}
+            </h2>
           </div>
 
           <div className="w-full">
@@ -244,22 +264,6 @@ export default function Home() {
               />
             </motion.div>
           </div>
-
-          {profile?.linkedin_url && (
-            <div className="text-center mt-8">
-              <a 
-                href={profile.linkedin_url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <Button variant="outline" className="border-[#ADBBD4] bg-white/80 hover:bg-white text-[#3D52A0] shadow-sm">
-                  <Linkedin className="w-4 h-4 mr-2" />
-                  View All Posts on LinkedIn
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </a>
-            </div>
-          )}
         </motion.div>
       )}
 
@@ -272,9 +276,11 @@ export default function Home() {
           className="mb-16"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gradient mb-4">Featured Study Materials</h2>
+            <h2 className="text-3xl font-bold text-gradient mb-4">
+              {t("featuredMaterials")}
+            </h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              Quick access to your most important study resources
+              {t("quickAccess")}
             </p>
           </div>
 
@@ -328,10 +334,10 @@ export default function Home() {
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
           {[
-            { label: "Study Materials", count: featuredMaterials.length, icon: FileText },
-            { label: "Years Tracked", count: "2+", icon: BookOpen },
-            { label: "Courses", count: "15+", icon: Calculator },
-            { label: "Hours Saved", count: "100+", icon: PenTool }
+            { label: t("stats.materials"), count: totalMaterials, icon: FileText },
+            { label: t("stats.years"), count: "2+", icon: BookOpen },
+            { label: t("stats.courses"), count: totalCourses, icon: Calculator },
+            { label: t("stats.downloads"), count: totalDownloads, icon: Download }
           ].map((stat, index) => (
             <div key={index} className="bg-white/80 rounded-xl p-6 border-0 shadow-lg">
               <stat.icon className="w-8 h-8 text-[#7091E6] mx-auto mb-2" />

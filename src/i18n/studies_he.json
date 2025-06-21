@@ -1,0 +1,10 @@
+{
+    "academicYear": "שנת לימודים",
+    "academicYears": "שנות לימודים",    
+    "selectAcademicYear": "בחר שנת לימודים כדי לחקור את הקורסים וחומרי הלימוד.",
+    "noStudyYearsAdded": "לא נוספו שנות לימודים",
+    "placeholderStudyYears": "שנות הלימודים שלך יופיעו כאן לאחר שתוסיף אותן בלוח הניהול.",
+    "defaultYearDescription": "חקרו {{count}} קורסים מ{{year}} שלי.",
+    "courses": "קורסים",
+    "viewYear": "צפייה בשנה"
+}

@@ -1,0 +1,11 @@
+{
+  "backAcademicYears": "Back to Academic Years",
+  "yearNotFound": "Year Not Found",
+  "yearNotFoundMessage": "The requested academic year could not be found.",
+  "backToStudies": "Back to Studies",
+  "noCoursesAdded": "No Courses Added",
+  "noCoursesMessage": "Courses for this year will appear here once you add them in the admin panel.",
+  "semester": "Semester {{semester}}",
+  "files": "files",
+  "noMaterialsUploaded": "No study materials uploaded for this course yet."
+}

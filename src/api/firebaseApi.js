@@ -3,11 +3,15 @@ import {
   collection,
   getDocs,
   doc,
-  getDoc
+  getDoc,
+  query,
+  orderBy
 } from "firebase/firestore";
 
 export async function fetchStudyYears() {
-  const querySnapshot = await getDocs(collection(db, "studyYears"));
+  const studyYearsRef = collection(db, "studyYears");
+  const orderedQuery = query(studyYearsRef, orderBy("year_number", "asc"));
+  const querySnapshot = await getDocs(orderedQuery);
   return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 }
 
