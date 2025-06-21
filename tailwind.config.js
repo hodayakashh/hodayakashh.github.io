@@ -4,6 +4,12 @@ module.exports = {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
+  		backgroundImage: {
+  			'animated-gradient': 'linear-gradient(-45deg, hsl(var(--chart-1)), hsl(var(--chart-2)), hsl(var(--chart-3)), hsl(var(--chart-4)))'
+  		},
+  		backgroundSize: {
+  			'400%': '400% 400%',
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
@@ -77,11 +83,17 @@ module.exports = {
   				to: {
   					height: '0'
   				}
+  			},
+  			'animated-gradient': {
+  			  '0%': { backgroundPosition: '0% 50%' },
+  			  '50%': { backgroundPosition: '100% 50%' },
+  			  '100%': { backgroundPosition: '0% 50%' },
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			'animated-gradient': 'animated-gradient 15s ease infinite',
   		}
   	}
   },
