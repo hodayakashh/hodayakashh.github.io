@@ -135,7 +135,10 @@ export default function Home() {
 
   return (
     <div className="relative">
-      <div className="fixed inset-0 -z-10 bg-[length:400%_400%] bg-animated-gradient animate-animated-gradient" />
+      <div 
+        className="fixed inset-0 -z-10 bg-cover bg-center animate-pan"
+        style={{ backgroundImage: "url('/gradient-background.png')" }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <motion.div 

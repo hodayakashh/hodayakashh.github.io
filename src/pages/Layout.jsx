@@ -16,9 +16,10 @@ export default function Layout({ children, currentPageName }) {
   ];
 
   const isActive = (href) => location.pathname === href;
+  const isHomePage = location.pathname === createPageUrl("Home");
 
   return (
-    <div className="min-h-screen bg-[#EDE8F5]">
+    <div className={`min-h-screen ${isHomePage ? 'bg-transparent' : 'bg-[#EDE8F5]'}`}>
       <style>
         {`
           :root {
