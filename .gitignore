@@ -1,2 +1,5 @@
 node_modules
 src/components/admin/
+
+# Service Account Key
+scripts/serviceAccountKey.json

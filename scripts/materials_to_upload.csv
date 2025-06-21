@@ -1,0 +1,3 @@
+yearName_en,yearName_he,yearNumber,courseName_en,courseName_he,courseColor,courseSemester_en,courseSemester_he,materialTitle_en,materialTitle_he,materialType,localFilePath
+"First Year","שנה א'",1,"Intro to CS","מבוא למדעי המחשב","#3D52A0","A","א","Lecture 5 Summary","סיכום הרצאה 5","summary","uploads/lec5.pdf"
+"Second Year","שנה ב'",2,"Data Structures","מבני נתונים","#7091E6","B","ב","HW 2 Solutions","פתרונות תרגיל בית 2","homework","uploads/hw2.pdf" 

@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import Lottie from "lottie-react";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { createPageUrl } from "@/utils";
 import { Home, BookOpen, User, Settings, GraduationCap } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -16,10 +18,38 @@ export default function Layout({ children, currentPageName }) {
   ];
 
   const isActive = (href) => location.pathname === href;
-  const isHomePage = location.pathname === createPageUrl("Home");
+  const isHomePage = location.pathname === createPageUrl("Home") || location.pathname === '/';
+
+  const getPageBackground = () => {
+    const { pathname } = location;
+    if (pathname === '/' || pathname.toLowerCase() === '/home') {
+      return `url('/gradient-background.png')`;
+    }
+    if (pathname.toLowerCase().startsWith('/studies') || pathname.toLowerCase().startsWith('/year')) {
+      return `url('/gradient-background2.png')`;
+    }
+    return null;
+  }
+
+  const backgroundUrl = getPageBackground();
 
   return (
-    <div className={`min-h-screen ${isHomePage ? 'bg-transparent' : 'bg-[#EDE8F5]'}`}>
+    <div className={`min-h-screen relative ${!backgroundUrl && 'bg-[#EDE8F5]'}`}>
+       {backgroundUrl && (
+        <>
+          <div 
+            className="fixed inset-0 -z-20 bg-cover bg-center animate-pan"
+            style={{ backgroundImage: backgroundUrl }}
+          />
+          <div className="fixed inset-0 -z-10">
+            <Lottie 
+              animationData={{ "v": "5.5.7", "fr": 24, "ip": 0, "op": 120, "w": 1920, "h": 1080, "nm": "Particle", "ddd": 0, "assets": [], "layers": [ { "ddd": 0, "ind": 1, "ty": 4, "nm": "particle 2", "sr": 1, "ks": { "o": { "a": 1, "k": [ { "i": { "x": [ 0.833 ], "y": [ 0.833 ] }, "o": { "x": [ 0.167 ], "y": [ 0.167 ] }, "t": 0, "s": [ 0 ] }, { "i": { "x": [ 0.833 ], "y": [ 0.833 ] }, "o": { "x": [ 0.167 ], "y": [ 0.167 ] }, "t": 60, "s": [ 100 ] }, { "t": 120, "s": [ 0 ] } ], "ix": 11 }, "r": { "a": 0, "k": 0, "ix": 10 }, "p": { "a": 1, "k": [ { "i": { "x": 0.667, "y": 1 }, "o": { "x": 0.333, "y": 0 }, "t": 0, "s": [ 1920, 1080, 0 ], "to": [ 0, -270, 0 ], "ti": [ 0, 0, 0 ] }, { "t": 120, "s": [ 1920, 0, 0 ] } ], "ix": 2 }, "a": { "a": 0, "k": [ 0, 0, 0 ], "ix": 1 }, "s": { "a": 0, "k": [ 100, 100, 100 ], "ix": 6 } }, "ao": 0, "shapes": [ { "ty": "gr", "it": [ { "ind": 0, "ty": "sh", "ix": 1, "ks": { "a": 0, "k": { "i": [ [ 0, 0 ], [ 0, 0 ] ], "o": [ [ 0, 0 ], [ 0, 0 ] ], "v": [ [ -0.5, 0 ], [ 0.5, 0 ] ], "c": false } }, "nm": "Path 1", "mn": "ADBE Vector Shape - Line", "hd": false }, { "ty": "st", "c": { "a": 0, "k": [ 1, 1, 1, 1 ], "ix": 3 }, "o": { "a": 0, "k": 100, "ix": 4 }, "w": { "a": 0, "k": 1, "ix": 5 }, "lc": 2, "lj": 2, "ml": 4, "bm": 0, "nm": "Stroke 1", "mn": "ADBE Vector Graphic - Stroke", "hd": false }, { "ty": "rp", "c": { "a": 0, "k": 200, "ix": 1 }, "o": { "a": 0, "k": 0, "ix": 2 }, "tr": { "r": { "a": 1, "k": [ { "i": { "x": [ 0.667 ], "y": [ 1 ] }, "o": { "x": [ 0.333 ], "y": [ 0 ] }, "t": 0, "s": [ 0 ] }, { "t": 120, "s": [ 360 ] } ], "ix": 10 }, "p": { "a": 0, "k": [ 0, 0 ], "ix": 2 }, "a": { "a": 0, "k": [ 0, 0 ], "ix": 1 }, "s": { "a": 0, "k": [ 100, 100 ], "ix": 6 }, "o": { "a": 0, "k": 100, "ix": 11 } }, "bm": 0, "nm": "Repeater 1", "mn": "ADBE Repeater", "hd": false }, { "ty": "tr", "p": { "a": 0, "k": [ 0, 0 ], "ix": 2 }, "a": { "a": 0, "k": [ 0, 0 ], "ix": 1 }, "s": { "a": 0, "k": [ 100, 100 ], "ix": 6 }, "r": { "a": 0, "k": 0, "ix": 10 }, "o": { "a": 0, "k": 100, "ix": 11 }, "sk": { "a": 0, "k": 0, "ix": 7 }, "sa": { "a": 0, "k": 0, "ix": 8 } } ], "nm": "Group 1" } ], "ip": 0, "op": 120, "st": 0, "bm": 0 }, { "ddd": 0, "ind": 2, "ty": 4, "nm": "particle 1", "sr": 1, "ks": { "o": { "a": 1, "k": [ { "i": { "x": [ 0.833 ], "y": [ 0.833 ] }, "o": { "x": [ 0.167 ], "y": [ 0.167 ] }, "t": 0, "s": [ 0 ] }, { "i": { "x": [ 0.833 ], "y": [ 0.833 ] }, "o": { "x": [ 0.167 ], "y": [ 0.167 ] }, "t": 60, "s": [ 100 ] }, { "t": 120, "s": [ 0 ] } ], "ix": 11 }, "r": { "a": 0, "k": 0, "ix": 10 }, "p": { "a": 1, "k": [ { "i": { "x": 0.667, "y": 1 }, "o": { "x": 0.333, "y": 0 }, "t": 0, "s": [ 0, 0, 0 ], "to": [ 0, -270, 0 ], "ti": [ 0, 0, 0 ] }, { "t": 120, "s": [ 0, 1080, 0 ] } ], "ix": 2 }, "a": { "a": 0, "k": [ 0, 0, 0 ], "ix": 1 }, "s": { "a": 0, "k": [ 100, 100, 100 ], "ix": 6 } }, "ao": 0, "shapes": [ { "ty": "gr", "it": [ { "ind": 0, "ty": "sh", "ix": 1, "ks": { "a": 0, "k": { "i": [ [ 0, 0 ], [ 0, 0 ] ], "o": [ [ 0, 0 ], [ 0, 0 ] ], "v": [ [ -0.5, 0 ], [ 0.5, 0 ] ], "c": false } }, "nm": "Path 1", "mn": "ADBE Vector Shape - Line", "hd": false }, { "ty": "st", "c": { "a": 0, "k": [ 1, 1, 1, 1 ], "ix": 3 }, "o": { "a": 0, "k": 100, "ix": 4 }, "w": { "a": 0, "k": 1, "ix": 5 }, "lc": 2, "lj": 2, "ml": 4, "bm": 0, "nm": "Stroke 1", "mn": "ADBE Vector Graphic - Stroke", "hd": false }, { "ty": "rp", "c": { "a": 0, "k": 200, "ix": 1 }, "o": { "a": 0, "k": 0, "ix": 2 }, "tr": { "r": { "a": 1, "k": [ { "i": { "x": [ 0.667 ], "y": [ 1 ] }, "o": { "x": [ 0.333 ], "y": [ 0 ] }, "t": 0, "s": [ 0 ] }, { "t": 120, "s": [ 360 ] } ], "ix": 10 }, "p": { "a": 0, "k": [ 0, 0 ], "ix": 2 }, "a": { "a": 0, "k": [ 0, 0 ], "ix": 1 }, "s": { "a": 0, "k": [ 100, 100 ], "ix": 6 }, "o": { "a": 0, "k": 100, "ix": 11 } }, "bm": 0, "nm": "Repeater 1", "mn": "ADBE Repeater", "hd": false }, { "ty": "tr", "p": { "a": 0, "k": [ 0, 0 ], "ix": 2 }, "a": { "a": 0, "k": [ 0, 0 ], "ix": 1 }, "s": { "a": 0, "k": [ 100, 100 ], "ix": 6 }, "r": { "a": 0, "k": 0, "ix": 10 }, "o": { "a": 0, "k": 100, "ix": 11 }, "sk": { "a": 0, "k": 0, "ix": 7 }, "sa": { "a": 0, "k": 0, "ix": 8 } } ], "nm": "Group 1" } ], "ip": 0, "op": 120, "st": 0, "bm": 0 } ] }}
+              className="w-full h-full opacity-50"
+              style={{ filter: 'invert(1)' }}
+            />
+          </div>
+        </>
+      )}
       <style>
         {`
           :root {
@@ -55,8 +85,14 @@ export default function Layout({ children, currentPageName }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center h-16 justify-between">
             <Link to={createPageUrl("Home")} className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-[#3D52A0] rounded-lg flex items-center justify-center">
-                <GraduationCap className="w-5 h-5 text-white" />
+              <div className="w-14 h-14">
+                <DotLottieReact
+                  src="https://lottie.host/16079e96-c6e7-4d84-9a73-22179ec63c7c/jPF3KFof2p.lottie"
+                  loop
+                  autoplay
+                  speed={0.5}
+                  segment={[0, 30]}
+                />
               </div>
               <span className="text-xl font-bold text-gradient">Hodaya's Personal Studyhub</span>
             </Link>
