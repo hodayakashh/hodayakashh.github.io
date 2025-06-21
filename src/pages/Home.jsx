@@ -11,6 +11,7 @@ import { collection, collectionGroup, getDocs, addDoc, updateDoc, doc, query, or
 import localAvatar from "@/media/profile.jpeg";
 import { useTranslation } from "react-i18next";
 
+
 export default function Home() {
   const { t } = useTranslation('home');
   const [profile, setProfile] = useState(null);

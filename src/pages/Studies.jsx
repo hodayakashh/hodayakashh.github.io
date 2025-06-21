@@ -7,6 +7,7 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next"; // הוספת ייבוא useTranslation
+import i18n from "@/i18n";
 
 export default function Studies() {
   const { t } = useTranslation("studies"); // שימוש ב-namespace studies

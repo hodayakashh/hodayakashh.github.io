@@ -11,6 +11,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Plus, Edit, Trash2, Save, X, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next"; // Import useTranslation for i18n support
+import i18n from "@/i18n"; // Import i18n instance for language support
+
 
 export default function CourseManager({ onStatsChange }) {
   const [courses, setCourses] = useState([]);

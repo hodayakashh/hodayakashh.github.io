@@ -5,6 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FileText, BookOpen, Calculator, PenTool, Paperclip } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next"; // Import useTranslation for i18n support
+import i18n from "@/i18n"; // Import i18n instance for language support
 
 export default function MaterialManager() {
   const [materials, setMaterials] = useState([]);

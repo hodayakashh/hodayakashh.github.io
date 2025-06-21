@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Plus, Save, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next"; // Import useTranslation for i18n support
+import i18n from "@/i18n"; // Import i18n instance for language support
 
 export default function YearManager({ onStatsChange }) {
   const [years, setYears] = useState([]);
